@@ -115,6 +115,7 @@ final class A2dpStateMachine extends StateMachine {
     private int mA2dpSourceCodecPriorityAptx = BluetoothCodecConfig.CODEC_PRIORITY_DEFAULT;
     private int mA2dpSourceCodecPriorityAptxHd = BluetoothCodecConfig.CODEC_PRIORITY_DEFAULT;
     private int mA2dpSourceCodecPriorityLdac = BluetoothCodecConfig.CODEC_PRIORITY_DEFAULT;
+    private int mA2dpSourceCodecPriorityLhdc = BluetoothCodecConfig.CODEC_PRIORITY_DEFAULT;
 
     static {
         classInitNative();
@@ -211,6 +212,16 @@ final class A2dpStateMachine extends StateMachine {
                 && (value < BluetoothCodecConfig.CODEC_PRIORITY_HIGHEST)) {
             mA2dpSourceCodecPriorityLdac = value;
         }
+        
+        try {
+            value = resources.getInteger(R.integer.a2dp_source_codec_priority_lhdc);
+        } catch (NotFoundException e) {
+            value = BluetoothCodecConfig.CODEC_PRIORITY_DEFAULT;
+        }
+        if ((value >= BluetoothCodecConfig.CODEC_PRIORITY_DISABLED)
+            && (value < BluetoothCodecConfig.CODEC_PRIORITY_HIGHEST)) {
+            mA2dpSourceCodecPriorityLhdc = value;
+        }
 
         BluetoothCodecConfig codecConfig;
         BluetoothCodecConfig[] codecConfigArray =
@@ -245,6 +256,13 @@ final class A2dpStateMachine extends StateMachine {
                 0 /* codecSpecific1 */, 0 /* codecSpecific2 */, 0 /* codecSpecific3 */,
                 0 /* codecSpecific4 */);
         codecConfigArray[4] = codecConfig;
+        
+        codecConfig = new BluetoothCodecConfig(BluetoothCodecConfig.SOURCE_CODEC_TYPE_LHDC,
+                mA2dpSourceCodecPriorityLhdc, BluetoothCodecConfig.SAMPLE_RATE_NONE,
+                BluetoothCodecConfig.BITS_PER_SAMPLE_NONE, BluetoothCodecConfig.CHANNEL_MODE_NONE,
+                0 /* codecSpecific1 */, 0 /* codecSpecific2 */, 0 /* codecSpecific3 */,
+                0 /* codecSpecific4 */);
+        codecConfigArray[5] = codecConfig;
 
         return codecConfigArray;
     }
