@@ -256,13 +256,18 @@ final class A2dpStateMachine extends StateMachine {
                 0 /* codecSpecific1 */, 0 /* codecSpecific2 */, 0 /* codecSpecific3 */,
                 0 /* codecSpecific4 */);
         codecConfigArray[4] = codecConfig;
-        
         codecConfig = new BluetoothCodecConfig(BluetoothCodecConfig.SOURCE_CODEC_TYPE_LHDC,
                 mA2dpSourceCodecPriorityLhdc, BluetoothCodecConfig.SAMPLE_RATE_NONE,
                 BluetoothCodecConfig.BITS_PER_SAMPLE_NONE, BluetoothCodecConfig.CHANNEL_MODE_NONE,
                 0 /* codecSpecific1 */, 0 /* codecSpecific2 */, 0 /* codecSpecific3 */,
                 0 /* codecSpecific4 */);
         codecConfigArray[5] = codecConfig;
+        codecConfig = new BluetoothCodecConfig(BluetoothCodecConfig.SOURCE_CODEC_TYPE_LHDC_LL,
+                mA2dpSourceCodecPriorityLhdc, BluetoothCodecConfig.SAMPLE_RATE_NONE,
+                BluetoothCodecConfig.BITS_PER_SAMPLE_NONE, BluetoothCodecConfig.CHANNEL_MODE_NONE,
+                0 /* codecSpecific1 */, 0 /* codecSpecific2 */, 0 /* codecSpecific3 */,
+                0 /* codecSpecific4 */);
+        codecConfigArray[6] = codecConfig;
 
         return codecConfigArray;
     }
